@@ -6,7 +6,9 @@ import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from "@apollo/c
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: "http://localhost:4000/graphql",
+    // Apollo Server standalone serves GraphQL at the server root by default.
+    // Use the server URL (no /graphql) to avoid 'Failed to fetch' when paths differ.
+    uri: "http://localhost:4000/",
   }),
   cache: new InMemoryCache(),
 });
